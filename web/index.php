@@ -7,8 +7,8 @@ use FormulaParser\FormulaParser;
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$app->get('/', function() use($app){
-	return "Hello, world!"
+$app->get('/', function() use($app) {
+  return "Hello, world!";
 });
 
 $app->post('/bot', function() use($app) {

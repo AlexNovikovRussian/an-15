@@ -44,6 +44,10 @@ switch($data->type){
 			"user_id" => $data->object->user_id,
 			"messaage" => $m
 		);
+
+		file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($params))
+
+		return 'ok';
 }
 
 });

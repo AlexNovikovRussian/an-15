@@ -22,15 +22,12 @@ $app->post('/bot', function() use($app) {
   	return "nioh";
   }
 
-  echo "passed empty and secret check";
-
 switch($data->type){
 	case "confirmation":
 		return getenv("VK_SERVER_AUTH_TOKEN");
 
 
 	case "message_new":
-		echo "type message_new";
 
 		$m = "";
 
@@ -42,16 +39,12 @@ switch($data->type){
 		   $m = $e->getMessage();
 		}
 
-		echo "calculated formula";
-
 		$params = array(
 			"access_token" => getenv(VK_GROUP_TOKEN),
 			"v" => "5.69",
 			"user_id" => $data->object->user_id,
 			"messaage" => $m
 		);
-
-		echo "builded params";
 
 		file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($params));
 

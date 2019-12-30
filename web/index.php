@@ -45,7 +45,7 @@ switch($data->type){
 			"messaage" => $m
 		);
 
-		file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($params))
+		file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($params));
 
 		return 'ok';
 }

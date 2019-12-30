@@ -2,6 +2,8 @@
 
 require('../vendor/autoload.php');
 
+use FormulaParser\FormulaParser;
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -26,10 +28,22 @@ switch($data->type){
 
 
 	case "message_new":
+		$m = "";
+
+		try {
+		    $parser = new FormulaParser($data->object->body, 3);
+		    $result = $parser->getResult(); // [0 => 'done', 1 => 16.38]
+		    $m = $result[1];
+		} catch (\Exception $e) {
+		   $m = $e->getMessage();
+		}
+
 		$params = array(
 			"access_token" => getenv(VK_GROUP_TOKEN),
 			"v" => "5.69",
-			"user_id" => ""
+			"user_id" => $data->object->user_id,
+			"messaage" => $m
+		);
 }
 
 });
